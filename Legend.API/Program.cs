@@ -12,6 +12,9 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 app.Environment.IsDevelopment();
 
+/*builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services..AddTransient<IDeveloperRepository, DeveloperRepository>();
+builder.Services..AddTransient<IProjectRepository, ProjectRepository>();*/
 
 app.UseHttpsRedirection();
 

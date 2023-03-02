@@ -1,13 +1,14 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 using System.Xml.Linq;
 
 namespace Legend.Domain.Entities
 {
-    public class Character
+    public class Character : BaseEntity
     {
-        [Key]
-        public int CharacterId { get; set; }
+        //[Key]
+       // public int CharacterId { get; set; }
 
         [Required]
         [MinLength(5, ErrorMessage = "Your character name must be at least 5 characters long.")]
@@ -43,9 +44,5 @@ namespace Legend.Domain.Entities
 
         public int UserId { get; set; }
         public List<Mission> Missions { get; set; } = new List<Mission>();
-        public List<SideMission> SideMissions { get; set; } = new List<SideMission>();
-        public List<Weapon> Weapons { get; set; } = new List<Weapon>();
-
     }
 }
-

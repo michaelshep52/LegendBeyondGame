@@ -28,7 +28,7 @@
     <ProjectReference Include="..\Legend.Data\Legend.Data.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
-    <ProjectReference Include="..\LegendLibrary\Legend.Domain.csproj">
+    <ProjectReference Include="..\Legend.Domain\Legend.Domain.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>

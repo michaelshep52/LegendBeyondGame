@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reflection;
 using Legend.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -10,9 +12,7 @@ namespace Legend.Data
     {
         public DbSet<Character> Characters { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Weapon> Weapons { get; set; }
         public DbSet<Mission> Missions { get; set; }
-        public DbSet<SideMission> SubMissions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
                => optionsBuilder.UseNpgsql(
@@ -25,4 +25,3 @@ namespace Legend.Data
 
     }
 }
-

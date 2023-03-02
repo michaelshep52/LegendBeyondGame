@@ -1,13 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
 using System.Xml.Linq;
 
 namespace Legend.Domain.Entities
 {
-    public class User
+    public class User : BaseEntity
     {
-        public int UserId { get; set; }
+        //public int UserId { get; set; }
 
         [Required(ErrorMessage = "UserName cannot be null or empty")]
         [MinLength(5)]

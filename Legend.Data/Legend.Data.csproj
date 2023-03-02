@@ -7,21 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="LibraryProject\" />
-    <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
-    <None Remove="Microsoft.EntityFrameworkCore.Tools" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LibraryProject\" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LegendLibrary\Legend.Domain.csproj" />
+    <ProjectReference Include="..\Legend.Domain\Legend.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Repositories\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repositories\" />
   </ItemGroup>
 </Project>

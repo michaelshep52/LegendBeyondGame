@@ -4,10 +4,10 @@ using System.Xml.Linq;
 
 namespace Legend.Domain.Entities
 {
-    public class Mission
+    public class Mission : BaseEntity
     {
-        [Key]
-        public int MissionId { get; set; }
+       // [Key]
+        //public int MissionId { get; set; }
 
         [Required(ErrorMessage = "Name cannot be null or empty")]
         [MinLength(3)]
@@ -25,4 +25,3 @@ namespace Legend.Domain.Entities
         public List<Character>? Characters { get; set; } = new List<Character>();
     }
 }
-
