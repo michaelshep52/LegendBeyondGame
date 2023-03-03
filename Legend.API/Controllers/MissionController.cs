@@ -12,55 +12,55 @@ namespace Legend.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CharacterController : ControllerBase
+    public class MissionController : ControllerBase
     {
         private readonly LegendContext _context;
 
-        public CharacterController(LegendContext context)
+        public MissionController(LegendContext context)
         {
             _context = context;
         }
 
-        // GET: api/Character
+        // GET: api/Mission
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Character>>> GetCharacters()
+        public async Task<ActionResult<IEnumerable<Mission>>> GetMissions()
         {
-          if (_context.Characters == null)
+          if (_context.Missions == null)
           {
               return NotFound();
           }
-            return await _context.Characters.ToListAsync();
+            return await _context.Missions.ToListAsync();
         }
 
-        // GET: api/Character/5
+        // GET: api/Mission/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Character>> GetCharacter(Guid id)
+        public async Task<ActionResult<Mission>> GetMission(Guid id)
         {
-          if (_context.Characters == null)
+          if (_context.Missions == null)
           {
               return NotFound();
           }
-            var character = await _context.Characters.FindAsync(id);
+            var mission = await _context.Missions.FindAsync(id);
 
-            if (character == null)
+            if (mission == null)
             {
                 return NotFound();
             }
 
-            return character;
+            return mission;
         }
 
-        // PUT: api/Character/5
+        // PUT: api/Mission/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCharacter(Guid id, Character character)
+        public async Task<IActionResult> PutMission(Guid id, Mission mission)
         {
-            if (id != character.Id)
+            if (id != mission.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(character).State = EntityState.Modified;
+            _context.Entry(mission).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace Legend.API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CharacterExists(id))
+                if (!MissionExists(id))
                 {
                     return NotFound();
                 }
@@ -81,44 +81,44 @@ namespace Legend.API.Controllers
             return NoContent();
         }
 
-        // POST: api/Character
+        // POST: api/Mission
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Character>> PostCharacter(Character character)
+        public async Task<ActionResult<Mission>> PostMission(Mission mission)
         {
-          if (_context.Characters == null)
+          if (_context.Missions == null)
           {
-              return Problem("Entity set 'LegendContext.Characters'  is null.");
+              return Problem("Entity set 'LegendContext.Missions'  is null.");
           }
-            _context.Characters.Add(character);
+            _context.Missions.Add(mission);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCharacter", new { id = character.Id }, character);
+            return CreatedAtAction("GetMission", new { id = mission.Id }, mission);
         }
 
-        // DELETE: api/Character/5
+        // DELETE: api/Mission/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCharacter(Guid id)
+        public async Task<IActionResult> DeleteMission(Guid id)
         {
-            if (_context.Characters == null)
+            if (_context.Missions == null)
             {
                 return NotFound();
             }
-            var character = await _context.Characters.FindAsync(id);
-            if (character == null)
+            var mission = await _context.Missions.FindAsync(id);
+            if (mission == null)
             {
                 return NotFound();
             }
 
-            _context.Characters.Remove(character);
+            _context.Missions.Remove(mission);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool CharacterExists(Guid id)
+        private bool MissionExists(Guid id)
         {
-            return (_context.Characters?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Missions?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

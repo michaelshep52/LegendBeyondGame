@@ -12,55 +12,55 @@ namespace Legend.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CharacterController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly LegendContext _context;
 
-        public CharacterController(LegendContext context)
+        public UserController(LegendContext context)
         {
             _context = context;
         }
 
-        // GET: api/Character
+        // GET: api/User
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Character>>> GetCharacters()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-          if (_context.Characters == null)
+          if (_context.Users == null)
           {
               return NotFound();
           }
-            return await _context.Characters.ToListAsync();
+            return await _context.Users.ToListAsync();
         }
 
-        // GET: api/Character/5
+        // GET: api/User/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Character>> GetCharacter(Guid id)
+        public async Task<ActionResult<User>> GetUser(Guid id)
         {
-          if (_context.Characters == null)
+          if (_context.Users == null)
           {
               return NotFound();
           }
-            var character = await _context.Characters.FindAsync(id);
+            var user = await _context.Users.FindAsync(id);
 
-            if (character == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return character;
+            return user;
         }
 
-        // PUT: api/Character/5
+        // PUT: api/User/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCharacter(Guid id, Character character)
+        public async Task<IActionResult> PutUser(Guid id, User user)
         {
-            if (id != character.Id)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(character).State = EntityState.Modified;
+            _context.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace Legend.API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CharacterExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -81,44 +81,44 @@ namespace Legend.API.Controllers
             return NoContent();
         }
 
-        // POST: api/Character
+        // POST: api/User
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Character>> PostCharacter(Character character)
+        public async Task<ActionResult<User>> PostUser(User user)
         {
-          if (_context.Characters == null)
+          if (_context.Users == null)
           {
-              return Problem("Entity set 'LegendContext.Characters'  is null.");
+              return Problem("Entity set 'LegendContext.Users'  is null.");
           }
-            _context.Characters.Add(character);
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCharacter", new { id = character.Id }, character);
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
-        // DELETE: api/Character/5
+        // DELETE: api/User/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCharacter(Guid id)
+        public async Task<IActionResult> DeleteUser(Guid id)
         {
-            if (_context.Characters == null)
+            if (_context.Users == null)
             {
                 return NotFound();
             }
-            var character = await _context.Characters.FindAsync(id);
-            if (character == null)
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Characters.Remove(character);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool CharacterExists(Guid id)
+        private bool UserExists(Guid id)
         {
-            return (_context.Characters?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

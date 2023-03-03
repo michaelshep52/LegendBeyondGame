@@ -7,10 +7,13 @@ namespace Legend.Data.Repositories
 {
     public class UserRepository : LegendRepository<User>, IUserRepository
     {
-        public UserRepository(LegendContext context) : base (context)
+        public UserRepository(LegendContext context) : base(context)
         {
 
         }
     }
 }
+           
+               
+
 
