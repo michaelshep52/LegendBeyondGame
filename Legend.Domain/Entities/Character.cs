@@ -5,10 +5,10 @@ using System.Xml.Linq;
 
 namespace Legend.Domain.Entities
 {
-    public class Character : BaseEntity
+    public class Character 
     {
-        //[Key]
-       // public int CharacterId { get; set; }
+        [Key]
+       public int CharacterId { get; set; }
 
         [Required]
         [MinLength(5, ErrorMessage = "Your character name must be at least 5 characters long.")]
@@ -43,6 +43,5 @@ namespace Legend.Domain.Entities
         public bool IsActive { get; set; } = false;
 
         public int UserId { get; set; }
-        public List<Mission> Missions { get; set; } = new List<Mission>();
     }
 }

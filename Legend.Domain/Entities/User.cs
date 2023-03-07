@@ -4,9 +4,10 @@ using System.Xml.Linq;
 
 namespace Legend.Domain.Entities
 {
-    public class User : BaseEntity
+    public class User 
     {
-        //public int UserId { get; set; }
+        [Key]
+        public int UserId { get; set; }
 
         [Required(ErrorMessage = "UserName cannot be null or empty")]
         [MinLength(5)]
@@ -36,6 +37,8 @@ namespace Legend.Domain.Entities
 
 
         public Character? Character { get; set; }
+        public List<Mission> Missions { get; set; } = new List<Mission>();
+
 
     }
 }

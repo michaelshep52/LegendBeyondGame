@@ -12,16 +12,29 @@ namespace Legend.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MissionController : ControllerBase
+    public class MissionsController : ControllerBase
     {
         private readonly LegendContext _context;
 
-        public MissionController(LegendContext context)
+        public MissionsController(LegendContext context)
         {
             _context = context;
         }
 
-        // GET: api/Mission
+        Mission[] missions = new Mission[]
+        {
+            new Mission{MissionId=0, Name="Getting Started", Text="Kill 1 Enemy without Dying!", IsActive=true},
+            new Mission{MissionId=1, Name="Bot", Text="Kill 10 Enemy without Dying!", IsActive=true},
+            new Mission{MissionId=2, Name="Starting somewhere", Text="Kill 20 Enemy without Dying!", IsActive=true},
+            new Mission{MissionId=3, Name="Building a RESUME", Text="Kill 40 Enemy without Dying!", IsActive=true},
+            new Mission{MissionId=4, Name="Your a savage", Text="Kill 50 Enemy without Dying!", IsActive=true},
+            new Mission{MissionId=5, Name="King Slayer", Text="Kill 75 Enemy without Dying!", IsActive=true},
+            new Mission{MissionId=6, Name="Duty Calls", Text="Kill 85 Enemy without Dying!", IsActive=true},
+            new Mission{MissionId=7, Name="Best to ever be", Text="Kill 100 Enemy without Dying!", IsActive=true}
+        };
+
+
+        // GET: api/Missions
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Mission>>> GetMissions()
         {
@@ -32,9 +45,9 @@ namespace Legend.API.Controllers
             return await _context.Missions.ToListAsync();
         }
 
-        // GET: api/Mission/5
+        // GET: api/Missions/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Mission>> GetMission(Guid id)
+        public async Task<ActionResult<Mission>> GetMission(int id)
         {
           if (_context.Missions == null)
           {
@@ -50,12 +63,12 @@ namespace Legend.API.Controllers
             return mission;
         }
 
-        // PUT: api/Mission/5
+        // PUT: api/Missions/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMission(Guid id, Mission mission)
+        public async Task<IActionResult> PutMission(int id, Mission mission)
         {
-            if (id != mission.Id)
+            if (id != mission.MissionId)
             {
                 return BadRequest();
             }
@@ -81,7 +94,7 @@ namespace Legend.API.Controllers
             return NoContent();
         }
 
-        // POST: api/Mission
+        // POST: api/Missions
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Mission>> PostMission(Mission mission)
@@ -93,12 +106,12 @@ namespace Legend.API.Controllers
             _context.Missions.Add(mission);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMission", new { id = mission.Id }, mission);
+            return CreatedAtAction("GetMission", new { id = mission.MissionId }, mission);
         }
 
-        // DELETE: api/Mission/5
+        // DELETE: api/Missions/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMission(Guid id)
+        public async Task<IActionResult> DeleteMission(int id)
         {
             if (_context.Missions == null)
             {
@@ -116,9 +129,9 @@ namespace Legend.API.Controllers
             return NoContent();
         }
 
-        private bool MissionExists(Guid id)
+        private bool MissionExists(int id)
         {
-            return (_context.Missions?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Missions?.Any(e => e.MissionId == id)).GetValueOrDefault();
         }
     }
 }

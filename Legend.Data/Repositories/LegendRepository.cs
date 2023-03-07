@@ -8,54 +8,88 @@ using Legend.Domain.Interface;
 
 namespace Legend.Data.Repositories
 {
-    public class LegendRepository<T> : ILegendRepository<T> where T : BaseEntity
+    public abstract class LegendRepository<T> : ILegendRepository<T> where T : class
     {
         protected readonly LegendContext _context;
-        private DbSet<T> _entities;
-        string errorMessage = string.Empty;
-        public LegendRepository(LegendContext context)
+
+        protected LegendRepository(LegendContext context)
         {
             _context = context;
-            _entities = _context.Set<T>();
-        }
-        public IEnumerable<T> GetAll()
-        {
-            return _entities.AsEnumerable();
         }
 
-        public T GetById(Guid id)
+        public async Task<T> GetById(int id)
         {
-            return _entities.SingleOrDefault(s => s.Id == id);
+            return await _context.Set<T>().FindAsync(id);
         }
 
-        public IEnumerable<T> Find(Expression<Func<T, bool>> expression)
+        public async Task<IEnumerable<T>> GetAll()
         {
-            return _entities.Where(expression);
+            return await _context.Set<T>().ToListAsync();
         }
 
-        public void Insert(T entity)
+        public async Task Add(T entity)
         {
-            if (entity == null) throw new ArgumentNullException("entity");
+            await _context.Set<T>().AddAsync(entity);
+        }
 
-            _entities.Add(entity);
-            _context.SaveChanges();
+        public void Delete(T entity)
+        {
+            _context.Set<T>().Remove(entity);
         }
 
         public void Update(T entity)
         {
-            if (entity == null) throw new ArgumentNullException("entity");
-            _context.SaveChanges();
-        }
-
-        public void Delete(Guid id)
-        {
-            if (id == null) throw new ArgumentNullException("entity");
-
-            T entity = _entities.SingleOrDefault(s => s.Id == id);
-            _entities.Remove(entity);
-            _context.SaveChanges();
+            _context.Set<T>().Update(entity);
         }
     }
+    /* public class LegendRepository<T> : ILegendRepository<T> where T : BaseEntity
+     {
+         protected readonly LegendContext _context;
+         private DbSet<T> _entities;
+         string errorMessage = string.Empty;
+         public LegendRepository(LegendContext context)
+         {
+             _context = context;
+             _entities = _context.Set<T>();
+         }
+         public IEnumerable<T> GetAll()
+         {
+             return _entities.AsEnumerable();
+         }
+
+         public T GetById(Guid id)
+         {
+             return _entities.SingleOrDefault(s => s.Id == id);
+         }
+
+         public IEnumerable<T> Find(Expression<Func<T, bool>> expression)
+         {
+             return _entities.Where(expression);
+         }
+
+         public void Insert(T entity)
+         {
+             if (entity == null) throw new ArgumentNullException("entity");
+
+             _entities.Add(entity);
+             _context.SaveChanges();
+         }
+
+         public void Update(T entity)
+         {
+             if (entity == null) throw new ArgumentNullException("entity");
+             _context.SaveChanges();
+         }
+
+         public void Delete(Guid id)
+         {
+             if (id == null) throw new ArgumentNullException("entity");
+
+             T entity = _entities.SingleOrDefault(s => s.Id == id);
+             _entities.Remove(entity);
+             _context.SaveChanges();
+         }
+     }*/
 }
 
 

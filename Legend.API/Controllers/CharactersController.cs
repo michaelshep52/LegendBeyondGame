@@ -12,16 +12,27 @@ namespace Legend.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CharacterController : ControllerBase
+    public class CharactersController : ControllerBase
     {
         private readonly LegendContext _context;
 
-        public CharacterController(LegendContext context)
+        public CharactersController(LegendContext context)
         {
             _context = context;
         }
 
-        // GET: api/Character
+        Character[] characters = new Character[]
+        {
+        new Character{CharacterId=0, Name="Gunner", Health=6, Speed=6, Stamina=7, Strength=5, IsActive=true},
+        new Character{CharacterId=1, Name="Defender", Health=10, Speed=4, Stamina=5, Strength=10, IsActive=true},
+        new Character{CharacterId=2, Name="Ninja", Health=6, Speed=8, Stamina=7, Strength=5, IsActive=true},
+        new Character{CharacterId=3, Name="Healer", Health=5, Speed=6, Stamina=6, Strength=5, IsActive=true},
+        new Character{CharacterId=4, Name="Sniper", Health=7, Speed=7, Stamina=7, Strength=5, IsActive=true},
+        new Character{CharacterId=5, Name="Runner", Health=7, Speed=10, Stamina=8, Strength=5, IsActive=true},
+        new Character{CharacterId=6, Name="Ghost", Health=8, Speed=8, Stamina=8, Strength=7, IsActive=true},
+        };
+
+        // GET: api/Characters
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Character>>> GetCharacters()
         {
@@ -32,9 +43,9 @@ namespace Legend.API.Controllers
             return await _context.Characters.ToListAsync();
         }
 
-        // GET: api/Character/5
+        // GET: api/Characters/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Character>> GetCharacter(Guid id)
+        public async Task<ActionResult<Character>> GetCharacter(int id)
         {
           if (_context.Characters == null)
           {
@@ -50,12 +61,12 @@ namespace Legend.API.Controllers
             return character;
         }
 
-        // PUT: api/Character/5
+        // PUT: api/Characters/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCharacter(Guid id, Character character)
+        public async Task<IActionResult> PutCharacter(int id, Character character)
         {
-            if (id != character.Id)
+            if (id != character.CharacterId)
             {
                 return BadRequest();
             }
@@ -81,7 +92,7 @@ namespace Legend.API.Controllers
             return NoContent();
         }
 
-        // POST: api/Character
+        // POST: api/Characters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Character>> PostCharacter(Character character)
@@ -93,12 +104,12 @@ namespace Legend.API.Controllers
             _context.Characters.Add(character);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCharacter", new { id = character.Id }, character);
+            return CreatedAtAction("GetCharacter", new { id = character.CharacterId }, character);
         }
 
-        // DELETE: api/Character/5
+        // DELETE: api/Characters/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCharacter(Guid id)
+        public async Task<IActionResult> DeleteCharacter(int id)
         {
             if (_context.Characters == null)
             {
@@ -116,9 +127,9 @@ namespace Legend.API.Controllers
             return NoContent();
         }
 
-        private bool CharacterExists(Guid id)
+        private bool CharacterExists(int id)
         {
-            return (_context.Characters?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Characters?.Any(e => e.CharacterId == id)).GetValueOrDefault();
         }
     }
 }

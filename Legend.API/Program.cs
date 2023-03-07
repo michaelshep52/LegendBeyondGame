@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddTransient(typeof(ILegendRepository<>), typeof(LegendRepository<>));
-/*builder.Services.AddTransient<IUserRepository, IUserRepository>();
-builder.Services.AddTransient<ICharacterRepository, ICharacterRepository>();
-builder.Services.AddTransient<IMissionRepository, MissionRepository>();*/
+//builder.Services.AddTransient(typeof(ILegendRepository<>), typeof(LegendRepository<>));
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<ICharacterRepository, CharacterRepository>();
+builder.Services.AddTransient<IMissionRepository, MissionRepository>();
 
 // Add services to the container.
 

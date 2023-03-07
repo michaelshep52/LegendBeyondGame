@@ -2,6 +2,7 @@
 using Legend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Legend.Data.Migrations
 {
     [DbContext(typeof(LegendContext))]
-    partial class LegendContextModelSnapshot : ModelSnapshot
+    [Migration("20230307143045_UsertoCharacterRelation")]
+    partial class UsertoCharacterRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,21 +86,6 @@ namespace Legend.Data.Migrations
                     b.ToTable("Missions");
                 });
 
-            modelBuilder.Entity("Legend.Domain.Entities.MissionUser", b =>
-                {
-                    b.Property<int>("MissionId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("MissionId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("MissionUser");
-                });
-
             modelBuilder.Entity("Legend.Domain.Entities.User", b =>
                 {
                     b.Property<int>("UserId")
@@ -142,21 +130,6 @@ namespace Legend.Data.Migrations
                     b.HasOne("Legend.Domain.Entities.User", null)
                         .WithOne("Character")
                         .HasForeignKey("Legend.Domain.Entities.Character", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Legend.Domain.Entities.MissionUser", b =>
-                {
-                    b.HasOne("Legend.Domain.Entities.Mission", null)
-                        .WithMany()
-                        .HasForeignKey("MissionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Legend.Domain.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
