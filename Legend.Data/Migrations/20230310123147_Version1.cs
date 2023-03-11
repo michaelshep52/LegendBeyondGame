@@ -5,7 +5,7 @@
 namespace Legend.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class UsertoMissionRelation : Migration
+    public partial class Version1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

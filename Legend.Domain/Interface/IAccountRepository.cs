@@ -3,7 +3,7 @@ using Legend.Domain.Entities;
 
 namespace Legend.Domain.Interface
 {
-    public interface IUserRepository : ILegendRepository<User>
+    public interface IAccountRepository : ILegendRepository<Account>
     {
     }
 }

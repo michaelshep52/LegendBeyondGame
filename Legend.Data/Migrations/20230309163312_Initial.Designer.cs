@@ -2,6 +2,7 @@
 using Legend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Legend.Data.Migrations
 {
     [DbContext(typeof(LegendContext))]
-    partial class LegendContextModelSnapshot : ModelSnapshot
+    [Migration("20230309163312_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,9 +66,6 @@ namespace Legend.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CharacterId"));
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("Damage")
                         .HasColumnType("integer");
 
@@ -86,8 +86,6 @@ namespace Legend.Data.Migrations
 
                     b.HasKey("CharacterId");
 
-                    b.HasIndex("AccountId");
-
                     b.ToTable("Characters");
                 });
 
@@ -98,9 +96,6 @@ namespace Legend.Data.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("InventoryId"));
-
-                    b.Property<int>("CharacterId")
-                        .HasColumnType("integer");
 
                     b.Property<int>("Damage")
                         .HasColumnType("integer");
@@ -116,41 +111,7 @@ namespace Legend.Data.Migrations
 
                     b.HasKey("InventoryId");
 
-                    b.HasIndex("CharacterId");
-
                     b.ToTable("Inventories");
-                });
-
-            modelBuilder.Entity("Legend.Domain.Entities.Character", b =>
-                {
-                    b.HasOne("Legend.Domain.Entities.Account", "Account")
-                        .WithMany("Characters")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Account");
-                });
-
-            modelBuilder.Entity("Legend.Domain.Entities.Inventory", b =>
-                {
-                    b.HasOne("Legend.Domain.Entities.Character", "Character")
-                        .WithMany("Inventories")
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Character");
-                });
-
-            modelBuilder.Entity("Legend.Domain.Entities.Account", b =>
-                {
-                    b.Navigation("Characters");
-                });
-
-            modelBuilder.Entity("Legend.Domain.Entities.Character", b =>
-                {
-                    b.Navigation("Inventories");
                 });
 #pragma warning restore 612, 618
         }

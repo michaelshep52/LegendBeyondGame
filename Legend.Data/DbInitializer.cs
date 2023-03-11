@@ -3,7 +3,7 @@ using Legend.Domain.Entities;
 
 namespace Legend.Data
 {
-    public static class DbInitializer
+   /* public static class DbInitializer
     {
         public static void Initialize(LegendContext context)
         {
@@ -58,7 +58,7 @@ namespace Legend.Data
             }
             context.SaveChanges();
         }
-    }
+    }*/
     
 }
 

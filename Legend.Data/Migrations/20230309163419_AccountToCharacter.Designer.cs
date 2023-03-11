@@ -2,6 +2,7 @@
 using Legend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Legend.Data.Migrations
 {
     [DbContext(typeof(LegendContext))]
-    partial class LegendContextModelSnapshot : ModelSnapshot
+    [Migration("20230309163419_AccountToCharacter")]
+    partial class AccountToCharacter
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,9 +102,6 @@ namespace Legend.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("InventoryId"));
 
-                    b.Property<int>("CharacterId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("Damage")
                         .HasColumnType("integer");
 
@@ -115,8 +115,6 @@ namespace Legend.Data.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("InventoryId");
-
-                    b.HasIndex("CharacterId");
 
                     b.ToTable("Inventories");
                 });
@@ -132,25 +130,9 @@ namespace Legend.Data.Migrations
                     b.Navigation("Account");
                 });
 
-            modelBuilder.Entity("Legend.Domain.Entities.Inventory", b =>
-                {
-                    b.HasOne("Legend.Domain.Entities.Character", "Character")
-                        .WithMany("Inventories")
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Character");
-                });
-
             modelBuilder.Entity("Legend.Domain.Entities.Account", b =>
                 {
                     b.Navigation("Characters");
-                });
-
-            modelBuilder.Entity("Legend.Domain.Entities.Character", b =>
-                {
-                    b.Navigation("Inventories");
                 });
 #pragma warning restore 612, 618
         }

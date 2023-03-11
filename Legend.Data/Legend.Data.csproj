@@ -17,11 +17,16 @@
     <ProjectReference Include="..\Legend.Domain\Legend.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Remove="Data\Entities\Inventory.cs" />
+    <Compile Remove="Data\Entities\Account.cs" />
+    <Compile Remove="Data\Entities\Character.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Repositories\" />
-    <None Remove="Migrations\" />
+    <None Remove="ServiceExtension\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
-    <Folder Include="Migrations\" />
+    <Folder Include="ServiceExtension\" />
   </ItemGroup>
 </Project>

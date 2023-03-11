@@ -1,33 +1,33 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Reflection;
-using System.Xml.Linq;
+using Legend.API.Data;
+using Legend.API.Data.Entities;
 
-namespace Legend.Domain.Entities
+namespace Legend.API.Models
 {
-    public class Character 
+    public class CharacterModel
     {
-       // [Key]
+        [Key]
         public int CharacterId { get; set; }
 
-       // [Required]
-        //[MinLength(5, ErrorMessage = "Your character name must be at least 5 characters long.")]
+        [Required]
+        [MinLength(5, ErrorMessage = "Your character name must be at least 5 characters long.")]
         public string? Name { get; set; }
 
-        //[Required(ErrorMessage = "The Health field is required.")]
-        //[Range(1, 10, ErrorMessage = "Your base health must be between 1 and 10.")]
+        [Required(ErrorMessage = "The Health field is required.")]
+        [Range(1, 10, ErrorMessage = "Your base health must be between 1 and 10.")]
         public int Health { get; set; } = new Random().Next(1, 10);
 
-        //[Required(ErrorMessage = "The Damage field is required.")]
-       // [Range(1, 10, ErrorMessage = "Your base damage must be between 1 and 10.")]
+        [Required(ErrorMessage = "The Damage field is required.")]
+        [Range(1, 10, ErrorMessage = "Your base damage must be between 1 and 10.")]
         public int Damage { get; set; } = new Random().Next(1, 10);
 
-        //[Required(ErrorMessage = "The Speed field is required.")]
-        //[Range(1, 10, ErrorMessage = "Your base Speed must be between 1 and 10.")]
+        [Required(ErrorMessage = "The Speed field is required.")]
+        [Range(1, 10, ErrorMessage = "Your base Speed must be between 1 and 10.")]
         public int Speed { get; set; } = new Random().Next(1, 10);
 
-       //[Required(ErrorMessage = "The Stamina field is required.")]
-        //[Range(1, 10, ErrorMessage = "Your base stamina must be between 1 and 10.")]
+        [Required(ErrorMessage = "The Stamina field is required.")]
+        [Range(1, 10, ErrorMessage = "Your base stamina must be between 1 and 10.")]
         public int Stamina { get; set; } = new Random().Next(1, 10);
 
         /*[Required(ErrorMessage = "The Intelligence field is required.")]
@@ -38,8 +38,8 @@ namespace Legend.Domain.Entities
         [Range(1, 10, ErrorMessage = "Your base luck must be between 1 and 10.")]
         public int Luck { get; set; } = new Random().Next(1, 10);*/
 
-       /// [Required]
-       // [Display(Name = "Is Active")]
+        [Required]
+        [Display(Name = "Is Active")]
         public bool IsActive { get; set; } = false;
 
         //1 (Account) to Many (Character)
@@ -48,5 +48,7 @@ namespace Legend.Domain.Entities
 
         //1 (Character) to Many (Inventory)
         public List<Inventory>? Inventories { get; set; }
+
     }
 }
+

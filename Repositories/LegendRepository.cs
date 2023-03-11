@@ -1,43 +1,41 @@
-﻿using System;
-using Legend.Domain.Interface;
+﻿using Legend.API.Data;
+using Legend.API.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Legend.Data.Repositories
+namespace Legend.API.Repositories
 {
     public abstract class LegendRepository<T> : ILegendRepository<T> where T : class
     {
         protected readonly LegendContext _context;
-        protected readonly DbSet<T> _dbSet;
 
         protected LegendRepository(LegendContext context)
         {
             _context = context;
-            _dbSet = _context.Set<T>();
         }
 
         public async Task<T> GetById(int id)
         {
-            return await _dbSet.FindAsync(id);
+            return await _context.Set<T>().FindAsync(id);
         }
 
         public async Task<IEnumerable<T>> GetAll()
         {
-            return await _dbSet.ToListAsync();
+            return await _context.Set<T>().ToListAsync();
         }
 
-        public async Task Add(T entity)
+        public async Task Create(T entity)
         {
-            await _dbSet.AddAsync(entity);
+            await _context.Set<T>().AddAsync(entity);
         }
 
         public void Delete(T entity)
         {
-            _dbSet.Remove(entity);
+            _context.Set<T>().Remove(entity);
         }
 
         public void Update(T entity)
         {
-            _dbSet.Update(entity);
+            _context.Set<T>().Update(entity);
         }
     }
     /* public class LegendRepository<T> : ILegendRepository<T> where T : BaseEntity
@@ -88,6 +86,6 @@ namespace Legend.Data.Repositories
              _context.SaveChanges();
          }
      }*/
-
 }
+
 

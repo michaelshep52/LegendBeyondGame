@@ -5,30 +5,29 @@
 namespace Legend.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class UsertoCharacterRelation : Migration
+    public partial class AccountToCharacter : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "UserId",
+                name: "AccountId",
                 table: "Characters",
                 type: "integer",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Characters_UserId",
+                name: "IX_Characters_AccountId",
                 table: "Characters",
-                column: "UserId",
-                unique: true);
+                column: "AccountId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Characters_Users_UserId",
+                name: "FK_Characters_Accounts_AccountId",
                 table: "Characters",
-                column: "UserId",
-                principalTable: "Users",
-                principalColumn: "UserId",
+                column: "AccountId",
+                principalTable: "Accounts",
+                principalColumn: "AccountId",
                 onDelete: ReferentialAction.Cascade);
         }
 
@@ -36,15 +35,15 @@ namespace Legend.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Characters_Users_UserId",
+                name: "FK_Characters_Accounts_AccountId",
                 table: "Characters");
 
             migrationBuilder.DropIndex(
-                name: "IX_Characters_UserId",
+                name: "IX_Characters_AccountId",
                 table: "Characters");
 
             migrationBuilder.DropColumn(
-                name: "UserId",
+                name: "AccountId",
                 table: "Characters");
         }
     }

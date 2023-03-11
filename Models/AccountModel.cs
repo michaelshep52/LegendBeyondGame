@@ -1,17 +1,18 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
+using Legend.API.Data.Entities;
+using Microsoft.Extensions.Hosting;
 
-namespace Legend.Domain.Entities
+namespace Legend.API.Models
 {
-    public class User 
+    public class AccountModel
     {
         [Key]
-        public int UserId { get; set; }
+        public int AccountId { get; set; }
 
-        [Required(ErrorMessage = "UserName cannot be null or empty")]
+        [Required(ErrorMessage = "AccountName cannot be null or empty")]
         [MinLength(5)]
-        public string? UserName { get; set; }
+        public string? AccountName { get; set; }
 
         [Required(ErrorMessage = "Password cannot be null or empty")]
         [MinLength(8)]
@@ -35,11 +36,9 @@ namespace Legend.Domain.Entities
         [Display(Name = "Is Active")]
         public bool IsActive { get; set; } = false;
 
-
-        public Character? Character { get; set; }
-        public List<Mission> Missions { get; set; } = new List<Mission>();
-
-
+        //public Character? Character { get; set; }
+        //1 (User) to Many (Character)
+        public List<Character>? Characters { get; set; }
     }
 }
 

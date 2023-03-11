@@ -35,10 +35,10 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Legend.Data\Legend.Data.csproj">
+    <ProjectReference Include="..\Legend.Services\Legend.Services.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
-    <ProjectReference Include="..\Legend.Domain\Legend.Domain.csproj">
+    <ProjectReference Include="..\Legend.Data\Legend.Data.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>

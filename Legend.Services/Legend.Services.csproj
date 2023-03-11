@@ -7,12 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Entities\" />
-    <None Remove="Interface\" />
+    <None Remove="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Interface\" />
-    <Folder Include="Entities\" />
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Legend.Domain\Legend.Domain.csproj" />
+    <ProjectReference Include="..\Legend.Data\Legend.Data.csproj" />
   </ItemGroup>
 </Project>
