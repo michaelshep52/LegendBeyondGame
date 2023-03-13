@@ -68,7 +68,7 @@ namespace Legend.API.Controllers
 
         // PUT api/values/5
         [HttpPut]
-        public async Task<IActionResult> UpdateProduct(Account account)
+        public async Task<IActionResult> UpdateAccount(Account account)
         {
             if (account != null)
             {

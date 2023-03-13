@@ -6,7 +6,7 @@ namespace Legend.Domain.Entities
 {
     public class Account
     {
-        //[Key]
+        [Key]
         public int AccountId { get; set; }
 
        // [Required(ErrorMessage = "AccountName cannot be null or empty")]
@@ -29,15 +29,15 @@ namespace Legend.Domain.Entities
         public string? Email { get; set; }
 
         //[MinLength(10)]
-        public string? Phone { get; set; }
+        //public int? Phone { get; set; }
 
         //[Required]
        // [Display(Name = "Is Active")]
-        public bool IsActive { get; set; } = false;
+        //public bool IsActive { get; set; } = false;
 
         //public Character? Character { get; set; }
         //1 (Account) to Many (Character)
-       public List<Character>? Characters { get; set; }
+       //public List<Character>? Characters { get; set; }
 
     }
 }

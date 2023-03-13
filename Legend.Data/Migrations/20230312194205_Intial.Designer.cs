@@ -2,6 +2,7 @@
 using Legend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Legend.Data.Migrations
 {
     [DbContext(typeof(LegendContext))]
-    partial class LegendContextModelSnapshot : ModelSnapshot
+    [Migration("20230312194205_Intial")]
+    partial class Intial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -150,6 +153,9 @@ namespace Legend.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("InventoryId"));
 
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Damage")
                         .HasColumnType("integer");
 
@@ -161,12 +167,15 @@ namespace Legend.Data.Migrations
 
                     b.HasKey("InventoryId");
 
+                    b.HasIndex("CharacterId");
+
                     b.ToTable("Inventories");
 
                     b.HasData(
                         new
                         {
                             InventoryId = 1,
+                            CharacterId = 1,
                             Damage = 5,
                             Name = "Assault rife",
                             Type = "Gun"
@@ -174,6 +183,7 @@ namespace Legend.Data.Migrations
                         new
                         {
                             InventoryId = 2,
+                            CharacterId = 2,
                             Damage = 5,
                             Name = "Shotgun",
                             Type = "Gun"
@@ -181,6 +191,7 @@ namespace Legend.Data.Migrations
                         new
                         {
                             InventoryId = 3,
+                            CharacterId = 3,
                             Damage = 5,
                             Name = "Katana",
                             Type = "Sword"
@@ -188,6 +199,7 @@ namespace Legend.Data.Migrations
                         new
                         {
                             InventoryId = 4,
+                            CharacterId = 5,
                             Damage = 5,
                             Name = "Sniper",
                             Type = "Gun"
@@ -195,6 +207,7 @@ namespace Legend.Data.Migrations
                         new
                         {
                             InventoryId = 5,
+                            CharacterId = 6,
                             Damage = 5,
                             Name = "Bowie",
                             Type = "Knife"
@@ -202,6 +215,7 @@ namespace Legend.Data.Migrations
                         new
                         {
                             InventoryId = 6,
+                            CharacterId = 7,
                             Damage = 5,
                             Name = "Silenced Sniper",
                             Type = "Gun"
@@ -209,6 +223,7 @@ namespace Legend.Data.Migrations
                         new
                         {
                             InventoryId = 7,
+                            CharacterId = 4,
                             Damage = 5,
                             Name = "Health Blaster",
                             Type = "Gun"
@@ -229,9 +244,6 @@ namespace Legend.Data.Migrations
                     b.Property<int>("CharacterId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("InventoryId")
-                        .HasColumnType("integer");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
@@ -241,9 +253,18 @@ namespace Legend.Data.Migrations
 
                     b.HasIndex("CharacterId");
 
-                    b.HasIndex("InventoryId");
-
                     b.ToTable("Players");
+                });
+
+            modelBuilder.Entity("Legend.Domain.Entities.Inventory", b =>
+                {
+                    b.HasOne("Legend.Domain.Entities.Character", "Character")
+                        .WithMany("Inventories")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
                 });
 
             modelBuilder.Entity("Legend.Domain.Entities.Player", b =>
@@ -260,17 +281,14 @@ namespace Legend.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Legend.Domain.Entities.Inventory", "Inventory")
-                        .WithMany()
-                        .HasForeignKey("InventoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Account");
 
                     b.Navigation("Character");
+                });
 
-                    b.Navigation("Inventory");
+            modelBuilder.Entity("Legend.Domain.Entities.Character", b =>
+                {
+                    b.Navigation("Inventories");
                 });
 #pragma warning restore 612, 618
         }

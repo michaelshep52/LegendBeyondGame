@@ -6,7 +6,7 @@ namespace Legend.Domain.Entities
 {
     public class Inventory
     {
-       // [Key]
+       [Key]
         public int InventoryId { get; set; }
 
       //  [Required]
@@ -22,11 +22,11 @@ namespace Legend.Domain.Entities
 
        // [Required]
       // [Display(Name = "Is Active")]
-        public bool IsActive { get; set; } = false;
+       // public bool IsActive { get; set; } = false;
 
         //1 (Character) to Many (Inventory)
-        public int CharacterId { get; set; }
-        public Character? Character { get; set; }
+       // public int CharacterId { get; set; }
+       // public Character? Character { get; set; }
     }
 }
 

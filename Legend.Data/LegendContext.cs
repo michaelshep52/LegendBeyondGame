@@ -19,30 +19,32 @@ namespace Legend.Data
             _config = config;
         }
         */
+
         public LegendContext(DbContextOptions<LegendContext> contextOptions) : base(contextOptions)
         {
 
         }
-
+        
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Character> Characters { get; set; }
         public DbSet<Inventory> Inventories { get; set; }
+        public DbSet<Player> Players { get; set; }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-         //    => optionsBuilder.UseNpgsql("Host=localhost;Database=LegendGameData;Username=michaelshepherd;Password=Laelynes5267!");
-        
-       /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+           => optionsBuilder.UseNpgsql("Host=localhost;Database=LegendGameData;Username=michaelshepherd;Password=Laelynes5267!");
+
+        /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+         {
+             optionsBuilder.UseNpgsql(_config.GetConnectionString("LegendGameData"));
+             //Add to help with migrations for Datetime timestamp!!!!
+             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+         }*/
+
+
+        /*protected override void OnModelCreating(ModelBuilder bldr)
         {
-            optionsBuilder.UseNpgsql(_config.GetConnectionString("LegendGameData"));
-            //Add to help with migrations for Datetime timestamp!!!!
-            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-
-        }*/
-    }
-
-    /*protected override void OnModelCreating(ModelBuilder bldr)
-        {
-            bldr.Entity<Account>()
+          /* bldr.Entity<Account>()
               .HasData(new
               {
                   AccountId = 1,
@@ -51,81 +53,66 @@ namespace Legend.Data
                   FirstName = "Michael",
                   LastName = "Shepherd",
                   Email = "michaelshep52@gmail.com",
-                  Phone = 606 - 438 - 4485,
-                  CharacterId = 1,
-                  IsActive = true
               });
 
             bldr.Entity<Character>()
             .HasData(new
             {
-                CharacterId = 1,
-                Name = "Gunner",
-                Health = 6,
-                Speed = 6,
-                Stamina = 7,
-                Strength = 5,
-                InventoryId = 1,
-                IsActive = true
+                "characterId": 1,
+                "name": "Gunner",
+                "health": 6,
+                "strength": 5,
+                "speed": 6,
+                "stamina": 7
             }, new
             {
-                CharacterId = 2,
-                Name = "Defender",
-                Health = 10,
-                Speed = 4,
-                Stamina = 5,
-                Strength = 10,
-                InventoryId = 2,
-                IsActive = true
+                "characterId": 2,
+                "name": "Defender",
+                "health": 10,
+                "strength": 10,
+                "speed": 4,
+                "stamina": 5
+                
             }, new
             {
                 CharacterId = 3,
                 Name = "Ninja",
                 Health = 6,
-                Speed = 8,
-                Stamina = 7,
                 Strength = 5,
-                InventoryId = 3,
-                IsActive = true
+                Speed = 8,
+                Stamina = 7
             }, new
             {
                 CharacterId = 4,
                 Name = "Healer",
                 Health = 5,
-                Speed = 6,
-                Stamina = 6,
                 Strength = 5,
-                IsActive = true
+                Speed = 6,
+                Stamina = 6
             }, new
             {
                 CharacterId = 5,
                 Name = "Sniper",
                 Health = 7,
-                Speed = 7,
-                Stamina = 7,
                 Strength = 5,
-                InventoryId = 4,
-                IsActive = true
+                Speed = 7,
+                Stamina = 7
             }, new
             {
                 CharacterId = 6,
                 Name = "Runner",
                 Health = 7,
-                Speed = 10,
-                Stamina = 8,
                 Strength = 5,
-                InventoryId = 1,
-                IsActive = true
+                Speed = 10,
+                Stamina = 8
             }, new
             {
                 CharacterId = 7,
                 Name = "Ghost",
                 Health = 8,
-                Speed = 8,
-                Stamina = 8,
                 Strength = 7,
-                InventoryId = 3,
-                IsActive = true
+                Speed = 8,
+                Stamina = 8
             });
 
             bldr.Entity<Inventory>()
@@ -134,30 +121,44 @@ namespace Legend.Data
                             InventoryId = 1,
                             Name = "Assault rife",
                             Damage = 5,
-                            Type = "Gun",
-                            IsActive = true
+                            Type = "Gun"
                         }, new
                         {
                             InventoryId = 2,
                             Name = "Shotgun",
                             Damage = 5,
-                            Type = "Gun",
-                            IsActive = true
+                            Type = "Gun"
                         }, new
                         {
                             InventoryId = 3,
                             Name = "Katana",
                             Damage = 5,
-                            Type = "Sword",
-                            IsActive = true
+                            Type = "Sword"
                         }, new
                         {
                             InventoryId = 4,
                             Name = "Sniper",
                             Damage = 5,
-                            Type = "Gun",
-                            IsActive = true
+                            Type = "Gun"
+                        }, new
+                        {
+                            InventoryId = 5,
+                            Name = "Bowie",
+                            Damage = 5,
+                            Type = "Knife"
+                        }, new
+                        {
+                            InventoryId = 6,
+                            Name = "Silenced Sniper",
+                            Damage = 5,
+                            Type = "Gun"
+                        }, new
+                        {
+                            InventoryId = 7,
+                            Name = "Health Blaster",
+                            Damage = 5,
+                            Type = "Gun"
                         });
-        }
-    }*/
+        }*/
+    }
 }

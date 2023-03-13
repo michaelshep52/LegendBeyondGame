@@ -9,14 +9,23 @@ namespace Legend.Data.Repositories
         private readonly LegendContext _context;
         public ILegendRepository<Account> AccountRepository { get; }
         public ILegendRepository<Character> CharacterRepostiory { get; }
+        public ILegendRepository<Inventory> InventoryRepostiory { get; }
+        public ILegendRepository<Player> PlayerRepostiory { get; }
+
+
 
         public UnitOfWork(LegendContext Context,
                 IAccountRepository accountRepository,
-                ICharacterRepository characterRepository)
+                ICharacterRepository characterRepository,
+                IInventoryRepository inventoryRepostiory,
+                IPlayerRepository playerRepostiory)
         {
-                _context = Context;
-                AccountRepository = accountRepository;
-                CharacterRepostiory = characterRepository;
+            _context = Context;
+            AccountRepository = accountRepository;
+            CharacterRepostiory = characterRepository;
+            InventoryRepostiory = inventoryRepostiory;
+            PlayerRepostiory = playerRepostiory;
+                
         }
 
         public int Save()

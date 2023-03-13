@@ -16,8 +16,11 @@ namespace Legend.Data.ServiceExtension
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<ICharacterRepository, CharacterRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<ICharacterRepository, CharacterRepository>();
+            services.AddScoped<IInventoryRepository, InventoryRepository>();
+            services.AddScoped<IPlayerRepository, PlayerRepository>();
+
 
             return services;
         }

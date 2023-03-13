@@ -82,8 +82,6 @@ namespace Legend.Services
                     accountRepository.FirstName = account.FirstName;
                     accountRepository.LastName = account.LastName;
                     accountRepository.Email = account.Email;
-                    accountRepository.Phone = account.Phone;
-                    accountRepository.IsActive = account.IsActive;
 
 
                     _unitOfWork.AccountRepository.Update(accountRepository);

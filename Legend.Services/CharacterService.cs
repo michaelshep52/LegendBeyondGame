@@ -72,15 +72,14 @@ namespace Legend.Services
         {
             if (character != null)
             {
-                var characterRepostiory = await _unitOfWork.CharacterRepostiory.GetById(character.AccountId);
+                var characterRepostiory = await _unitOfWork.CharacterRepostiory.GetById(character.CharacterId);
                 if (characterRepostiory != null)
                 {
                     characterRepostiory.Name = character.Name;
                     characterRepostiory.Health = character.Health;
-                    characterRepostiory.Damage = character.Damage;
+                    characterRepostiory.Strength = character.Strength;
                     characterRepostiory.Speed = character.Speed;
                     characterRepostiory.Stamina = character.Stamina;
-                    characterRepostiory.IsActive = character.IsActive;
 
 
                     _unitOfWork.CharacterRepostiory.Update(characterRepostiory);
