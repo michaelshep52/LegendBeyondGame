@@ -11,8 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Legend.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion("1.0")]
     public class CharactersController : ControllerBase
     {
         public readonly ICharacterService _characterService;

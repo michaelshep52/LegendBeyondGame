@@ -12,8 +12,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Legend.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion("1.0")]
     public class PlayersController : ControllerBase
     {
         public readonly IPlayerService _playerService;
@@ -55,11 +56,11 @@ namespace Legend.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePlayer(Player player)
         {
-            var isPlaerCreated = await _playerService.CreatePlayer(player);
+            var isPlayerCreated = await _playerService.CreatePlayer(player);
 
-            if (isPlaerCreated)
+            if (isPlayerCreated)
             {
-                return Ok(isPlaerCreated);
+                return Ok(isPlayerCreated);
             }
             else
             {

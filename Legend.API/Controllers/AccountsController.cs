@@ -11,8 +11,9 @@ using Microsoft.Identity.Client;
 
 namespace Legend.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion("1.0")]
     public class AccountsController : ControllerBase
     {
         public readonly IAccountService _accountService;
@@ -34,10 +35,26 @@ namespace Legend.API.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{accountId}")]
+
+       /* [HttpGet("{accountId}")]
         public async Task<IActionResult> GetAccountById(int accountId)
         {
             var account = await _accountService.GetAccountById(accountId);
+
+            if (account != null)
+            {
+                return Ok(account);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }*/
+
+        [HttpGet("{email}")]
+        public async Task<IActionResult> GetAccountByEmail(string email)
+        {
+            var account = await _accountService.GetAccountByEmail(email);
 
             if (account != null)
             {

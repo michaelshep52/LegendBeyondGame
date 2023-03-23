@@ -1,6 +1,7 @@
 ﻿using Legend.Services;
 using Legend.Services.Interfaces;
 using Legend.Data.ServiceExtension;
+using Microsoft.AspNetCore.Mvc.Versioning;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,11 +17,29 @@ builder.Services.AddScoped<ICharacterService, CharacterService>();
 builder.Services.AddScoped<IInventoryService, InventoryService>();
 builder.Services.AddScoped<IPlayerService, PlayerService>();
 
-builder.Services.AddControllers();
-/*
-builder.Services.AddDbContext<LegendContext>(options => options.UseNpgsql(
-builder.Configuration.GetConnectionString("LegendGameData")));
-*/
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+    {
+        options.UseMemberCasing();
+    });
+   
+
+builder.Services.AddApiVersioning(opt =>
+{
+    opt.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+    opt.AssumeDefaultVersionWhenUnspecified = true;
+    opt.ReportApiVersions = true;
+    opt.ApiVersionReader = ApiVersionReader.Combine(new UrlSegmentApiVersionReader(),
+                                                    new HeaderApiVersionReader("x-api-version"),
+                                                    new MediaTypeApiVersionReader("x-api-version"));
+});
+// Add ApiExplorer to discover versions
+builder.Services.AddVersionedApiExplorer(setup =>
+{
+    setup.GroupNameFormat = "'v'VVV";
+    setup.SubstituteApiVersionInUrl = true;
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
