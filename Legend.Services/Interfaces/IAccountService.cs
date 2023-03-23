@@ -11,6 +11,8 @@ namespace Legend.Services.Interfaces
 
         Task<Account> GetAccountById(int accountId);
 
+        Task<Account> GetAccountByEmail(string email);
+
         Task<bool> UpdateAccount(Account account);
 
         Task<bool> DeleteAccount(int accountId);

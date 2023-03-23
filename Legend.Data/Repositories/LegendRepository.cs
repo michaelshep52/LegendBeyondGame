@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Linq;
+using Legend.Domain.Entities;
 using Legend.Domain.Interface;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,6 +41,8 @@ namespace Legend.Data.Repositories
             _dbSet.Update(entity);
         }
     }
+
+}
     /* public class LegendRepository<T> : ILegendRepository<T> where T : BaseEntity
      {
          protected readonly LegendContext _context;
@@ -89,5 +92,4 @@ namespace Legend.Data.Repositories
          }
      }*/
 
-}
 

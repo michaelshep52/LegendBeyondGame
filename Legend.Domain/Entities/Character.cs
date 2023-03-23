@@ -18,9 +18,9 @@ namespace Legend.Domain.Entities
         //[Range(1, 10, ErrorMessage = "Your base health must be between 1 and 10.")]
         public int Health { get; set; } = new Random().Next(1, 10);
 
-        //[Required(ErrorMessage = "The Strength field is required.")]
-       // [Range(1, 10, ErrorMessage = "Your base strength must be between 1 and 10.")]
-        public int Strength { get; set; } = new Random().Next(1, 10);
+        //[Required(ErrorMessage = "The Level field is required.")]
+       // [Range(1, 10, ErrorMessage = "Your base level must be between 1 and 10.")]
+        public int Level { get; set; } = new Random().Next(1, 10);
 
         //[Required(ErrorMessage = "The Speed field is required.")]
         //[Range(1, 10, ErrorMessage = "Your base Speed must be between 1 and 10.")]

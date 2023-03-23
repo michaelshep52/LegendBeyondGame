@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-
-namespace Legend.Domain.Interface
+﻿namespace Legend.Domain.Interface
 {
     public interface ILegendRepository<T> where T : class
     {

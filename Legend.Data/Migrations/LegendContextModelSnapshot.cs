@@ -60,6 +60,9 @@ namespace Legend.Data.Migrations
                     b.Property<int>("Health")
                         .HasColumnType("integer");
 
+                    b.Property<int>("Level")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
@@ -69,77 +72,9 @@ namespace Legend.Data.Migrations
                     b.Property<int>("Stamina")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Strength")
-                        .HasColumnType("integer");
-
                     b.HasKey("CharacterId");
 
                     b.ToTable("Characters");
-
-                    b.HasData(
-                        new
-                        {
-                            CharacterId = 1,
-                            Health = 6,
-                            Name = "Gunner",
-                            Speed = 6,
-                            Stamina = 7,
-                            Strength = 5
-                        },
-                        new
-                        {
-                            CharacterId = 2,
-                            Health = 10,
-                            Name = "Defender",
-                            Speed = 4,
-                            Stamina = 5,
-                            Strength = 10
-                        },
-                        new
-                        {
-                            CharacterId = 3,
-                            Health = 6,
-                            Name = "Ninja",
-                            Speed = 8,
-                            Stamina = 7,
-                            Strength = 5
-                        },
-                        new
-                        {
-                            CharacterId = 4,
-                            Health = 5,
-                            Name = "Healer",
-                            Speed = 6,
-                            Stamina = 6,
-                            Strength = 5
-                        },
-                        new
-                        {
-                            CharacterId = 5,
-                            Health = 7,
-                            Name = "Sniper",
-                            Speed = 7,
-                            Stamina = 7,
-                            Strength = 5
-                        },
-                        new
-                        {
-                            CharacterId = 6,
-                            Health = 7,
-                            Name = "Runner",
-                            Speed = 10,
-                            Stamina = 8,
-                            Strength = 5
-                        },
-                        new
-                        {
-                            CharacterId = 7,
-                            Health = 8,
-                            Name = "Ghost",
-                            Speed = 8,
-                            Stamina = 8,
-                            Strength = 7
-                        });
                 });
 
             modelBuilder.Entity("Legend.Domain.Entities.Inventory", b =>
@@ -162,57 +97,6 @@ namespace Legend.Data.Migrations
                     b.HasKey("InventoryId");
 
                     b.ToTable("Inventories");
-
-                    b.HasData(
-                        new
-                        {
-                            InventoryId = 1,
-                            Damage = 5,
-                            Name = "Assault rife",
-                            Type = "Gun"
-                        },
-                        new
-                        {
-                            InventoryId = 2,
-                            Damage = 5,
-                            Name = "Shotgun",
-                            Type = "Gun"
-                        },
-                        new
-                        {
-                            InventoryId = 3,
-                            Damage = 5,
-                            Name = "Katana",
-                            Type = "Sword"
-                        },
-                        new
-                        {
-                            InventoryId = 4,
-                            Damage = 5,
-                            Name = "Sniper",
-                            Type = "Gun"
-                        },
-                        new
-                        {
-                            InventoryId = 5,
-                            Damage = 5,
-                            Name = "Bowie",
-                            Type = "Knife"
-                        },
-                        new
-                        {
-                            InventoryId = 6,
-                            Damage = 5,
-                            Name = "Silenced Sniper",
-                            Type = "Gun"
-                        },
-                        new
-                        {
-                            InventoryId = 7,
-                            Damage = 5,
-                            Name = "Health Blaster",
-                            Type = "Gun"
-                        });
                 });
 
             modelBuilder.Entity("Legend.Domain.Entities.Player", b =>

@@ -20,7 +20,7 @@ namespace Legend.Data
         }
         */
 
-        public LegendContext(DbContextOptions<LegendContext> contextOptions) : base(contextOptions)
+       public LegendContext(DbContextOptions<LegendContext> contextOptions) : base(contextOptions)
         {
 
         }
@@ -44,7 +44,7 @@ namespace Legend.Data
 
         /*protected override void OnModelCreating(ModelBuilder bldr)
         {
-          /* bldr.Entity<Account>()
+           bldr.Entity<Account>()
               .HasData(new
               {
                   AccountId = 1,

@@ -7,11 +7,11 @@ namespace Legend.Data.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private readonly LegendContext _context;
-        public ILegendRepository<Account> AccountRepository { get; }
+
+        public IAccountRepository AccountRepository { get; }
         public ILegendRepository<Character> CharacterRepostiory { get; }
         public ILegendRepository<Inventory> InventoryRepostiory { get; }
         public ILegendRepository<Player> PlayerRepostiory { get; }
-
 
 
         public UnitOfWork(LegendContext Context,

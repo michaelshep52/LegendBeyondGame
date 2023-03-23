@@ -77,7 +77,7 @@ namespace Legend.Services
                 {
                     characterRepostiory.Name = character.Name;
                     characterRepostiory.Health = character.Health;
-                    characterRepostiory.Strength = character.Strength;
+                    characterRepostiory.Level = character.Level;
                     characterRepostiory.Speed = character.Speed;
                     characterRepostiory.Stamina = character.Stamina;
 
