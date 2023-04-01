@@ -45,9 +45,9 @@ Follow these steps:
 
 ## Game Features
 - Home Page with Login/Register/Settings
--Login Page to Login as existing user
--Register Page to create new account
--Character Select Page to choose between different characters that have different attributes and inventories (currently not finished)
+- Login Page to Login as existing user
+- Register Page to create new account
+- Character Select Page to choose between different characters that have different attributes and inventories (currently not finished)
 
 ## Game Details
 - Open World First person Shooter
