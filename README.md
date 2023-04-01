@@ -1,7 +1,7 @@
 # LegendBeyondGame
 This repository contains the C# backend and client for Legend Game REST API. 
 Where you can create Player, create an account, choose a character, and choose a inventory.
-You also have the options to create a character and inventory as you desire but will not be added to the game.
+You also have the options to create a character and inventory as you desire but will not be added to the game. To play the game you must download unity game engine  https://unity.com/download follow propt to download.
 
 ## Nuget Packages
 Make sure to restore the packages.
@@ -42,3 +42,14 @@ Follow these steps:
 - Second you need the NuGet packages to be restore.
 - Third Run the application.
 - Finally Create, Read, Update, and Delete data from database with Swaggers user friendly UI.
+
+## Game Features
+- Home Page with Login/Register/Settings
+-Login Page to Login as existing user
+-Register Page to create new account
+-Character Select Page to choose between different characters that have different attributes and inventories (currently not finished)
+
+## Game Details
+- Open World First person Shooter
+- 1 enemy that animates and dies
+- Many new features coming soon!
