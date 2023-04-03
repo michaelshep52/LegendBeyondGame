@@ -1,10 +1,13 @@
 # LegendBeyondGame
 This repository contains the C# backend and client for Legend Game REST API. 
 Where you can create Player, create an account, choose a character, and choose a inventory.
-You also have the options to create a character and inventory as you desire but will not be added to the game. To play the game you must download unity game engine  https://unity.com/download follow propt to download.
+You also have the options to create a character and inventory as you desire but will not be added to the game. 
+- Comming soon:
+- To play the game you must download unity game engine  https://unity.com/download follow propt to download.
 
 ## Nuget Packages
 Make sure to restore the packages.
+
 ### API
 - Microsoft.AspNetCore.Mvc.NewtonsoftJson (for json formatting to pascalcase for untiy)
 - Microsoft.AspNetCore.Mvc.Versioning 
@@ -15,10 +18,12 @@ Make sure to restore the packages.
 - Microsoft.VisualStudio.Web.CodeGeneration.Design
 - Npgsql.EntityFrameworkCore.PostgresSQL
 - SwashBuckle.AspNetCore
+
 ### Data
 - Microsoft.EntityFrameworkCore.Tools
 - Npgsql.EntityFrameworkCore.PostgresSQL
-### Addition Nuget information
+
+### Additional Nuget information
 #### If you do not have postgres downloaded on your computer no problem simply add:
 - Microsoft.EntityFrameworkCore.Sqlite 
 - Microsoft.EntityFrameworkCore.SqlServer
@@ -55,7 +60,7 @@ Follow these steps:
 
 ## Game Details
 - Open World First person Shooter
-- 1 enemy that animates and dies
+- 1 type of enemy that animates and dies
 - Many new features coming soon!
 
 # SCENE PICTURES
