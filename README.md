@@ -48,6 +48,12 @@ Follow these steps:
 - Third Run the application.
 - Finally Create, Read, Update, and Delete data from database with Swaggers user friendly UI.
 
+## API Pictures
+<img width="1280" alt="Screenshot 2023-07-20 at 12 03 00 PM" src="https://github.com/michaelshep52/LegendBeyondGame/assets/112525897/24af212a-8319-44b2-b568-4e1749737845">
+<img width="1280" alt="Screenshot 2023-07-20 at 12 03 04 PM" src="https://github.com/michaelshep52/LegendBeyondGame/assets/112525897/98765435-1b50-4c12-98c7-aaf0c5633437">
+<img width="1280" alt="Screenshot 2023-07-20 at 12 03 07 PM" src="https://github.com/michaelshep52/LegendBeyondGame/assets/112525897/48e5d9ee-1a98-4613-a7c2-e4d7dd29a08d">
+<img width="1280" alt="Screenshot 2023-07-20 at 12 03 10 PM" src="https://github.com/michaelshep52/LegendBeyondGame/assets/112525897/65352316-208b-476c-a2a3-ce4f3285a940">
+
 ## Game is to Large to be uploaded into github
 - Still trying to find a way around it to post it
 - However here are the features
